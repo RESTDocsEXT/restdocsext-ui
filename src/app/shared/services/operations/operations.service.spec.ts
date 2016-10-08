@@ -19,9 +19,11 @@ describe('service: OperationsService', () => {
 
     let operations: Map<string, Operation[]> = service.operations;
     expect(isPresent(operations.get('Cats'))).toBe(true);
-    expect(operations.get('Cats').length).toBe(3);
+    expect(operations.get('Cats').length).toBe(5);
     expect(isPresent(operations.get('Dogs'))).toBe(true);
-    expect(operations.get('Dogs').length).toBe(3);
+    expect(operations.get('Dogs').length).toBe(5);
+    expect(isPresent(operations.get('Birds'))).toBe(true);
+    expect(operations.get('Birds').length).toBe(5);
   }));
 
   it('should contain Operations alphabetized by path',
@@ -31,6 +33,8 @@ describe('service: OperationsService', () => {
     expect(operations[0].path).toBe('/cats');
     expect(operations[1].path).toBe('/cats');
     expect(operations[2].path).toBe('/cats/{id}');
+    expect(operations[3].path).toBe('/cats/{id}');
+    expect(operations[4].path).toBe('/cats/{id}');
   }));
 
   it('should find Operation by numberic identifier',
@@ -39,25 +43,25 @@ describe('service: OperationsService', () => {
     let op = service.findOperation(1);
     expect(isPresent(op)).toBe(true);
     expect(op.id).toBe(1);
-    expect(op.name).toBe('Create a cat');
 
     op = service.findOperation(4);
     expect(isPresent(op)).toBe(true);
     expect(op.id).toBe(4);
-    expect(op.name).toBe('Create a dog');
+
+    op = service.findOperation(7);
+    expect(isPresent(op)).toBe(true);
+    expect(op.id).toBe(7);
   }));
 
   it('should find Operation by the URL friendly name identifier',
       inject([ OperationsService ], (service: OperationsService) => {
 
-    let op = service.findOperation(1);
+    let op = service.findOperation('create-a-cat');
     expect(isPresent(op)).toBe(true);
-    expect(op.id).toBe(1);
     expect(op.name).toBe('Create a cat');
 
-    op = service.findOperation(4);
+    op = service.findOperation('create-a-dog');
     expect(isPresent(op)).toBe(true);
-    expect(op.id).toBe(4);
     expect(op.name).toBe('Create a dog');
   }));
 
