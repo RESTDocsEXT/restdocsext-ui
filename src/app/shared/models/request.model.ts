@@ -3,33 +3,17 @@ import { Request, Headers, RequestOptions } from '@angular/http';
 import { NamedDescriptor, KeyValuePair, Operation } from './index';
 import { isPresent, isBlank } from '../util';
 
-/**
- * Reprent the `OperationRequest` URL. It will hold the orginal URL
- * with possible templates, along the the current value (after updates).
- * 
- * @author Paul Samsotha
- */
-export class RequestUrl {
-  current: string;
-
-  constructor(public template: string) {
-    this.current = this.template;
-  }
-
-  toString() {
-    return this.current;
-  }
-}
-
 export class OperationRequest {
 
-  readonly uri: RequestUrl;
-  readonly httpMethod: string;
+  uri: string;
+  httpMethod: string;
   requestBody: string;
   pathParameters: KeyValuePair[];
 
   requestParameters: KeyValuePair[];
   requestHeaders: KeyValuePair[];
+
+  private readonly uriTemplate: string;
 
   private REQUEST_PARAMETER = 'request parameter';
   private REQUEST_HEADER = 'request header';
@@ -60,7 +44,8 @@ export class OperationRequest {
               httpMethod: string,
               requestBody: string,
               pathParameters?: NamedDescriptor[]) {
-    this.uri = new RequestUrl(uri);
+    this.uriTemplate = uri;
+    this.uri = this.uriTemplate;
     this.httpMethod = httpMethod.toUpperCase();
     this.requestBody = requestBody;
     this.pathParameters = this.convertPathParameters(pathParameters);
@@ -115,11 +100,13 @@ export class OperationRequest {
     if (isPresent(this.pathParameters) && this.pathParameters.length > 0) {
       let param = this.pathParameters[index];
       if (isPresent(param)) {
-        let newUrl = this.uri.template;
+        let query = this.uri.indexOf('?') === -1 ? null
+          : this.uri.substring(this.uri.indexOf('?'));
+        let newUrl = this.uriTemplate + (query || '');
         for (let param of this.pathParameters) {
           newUrl = newUrl.replace(param['template'], param.value);
         }
-        this.uri.current = newUrl;
+        this.uri = newUrl;
       }
     }
   }
@@ -183,8 +170,8 @@ export class OperationRequest {
       let uri = this.uri;
       let params = this.requestParameters;
       if (params.length > 0 && params[0].key) {
-        if (uri.current.indexOf('?') !== -1) {
-          uri.current = uri.current.split('?')[0];
+        if (uri.indexOf('?') !== -1) {
+          uri = uri.split('?')[0];
         }
 
         let query = '?';
@@ -195,21 +182,21 @@ export class OperationRequest {
           }
         }
         query += array.join('&');
-        this.uri.current = uri.current + query;
+        this.uri = uri + query;
       }
 
       // When a query parameter is being removed and it is the last in the list,
       // we want to make sure to remove the `?` from the URI.
       if (isRemove) {
         if (params.length === 0) {
-          if (uri.current.indexOf('?') !== -1) {
-            this.uri.current = uri.current.split('?')[0];
+          if (uri.indexOf('?') !== -1) {
+            this.uri = uri.split('?')[0];
           }
         }
       }
     } else {
       if (isRemove) {
-        this.uri.current = this.uri.current.split('?')[0];
+        this.uri = this.uri.split('?')[0];
       }
     }
   }
@@ -317,7 +304,7 @@ export class OperationRequest {
    */
   toAngularRequest(baseUrl: string): Request {
     let options = new RequestOptions({
-      url: `${baseUrl}${this.uri.current}`,
+      url: `${baseUrl}${this.uri}`,
       method: this.httpMethod,
       body: this.requestBody,
       headers: new Headers(this.requestHeaders)

@@ -28,7 +28,7 @@ describe('model: OperationRequest', () => {
   });
 
   it('should contain the correct data', () => {
-    expect(request.uri.current).toBe('http://example.com/dogs/{dogId}/owner/{ownerId}');
+    expect(request.uri).toBe('http://example.com/dogs/{dogId}/owner/{ownerId}');
     expect(request.httpMethod).toBe('GET');
     expect(isPresent(request.pathParameters)).toBe(true);
     expect(request.pathParameters instanceof Array).toBe(true);
@@ -46,10 +46,10 @@ describe('model: OperationRequest', () => {
   describe('when updating a path parameter', () => {
     it('should replace the template correctly', () => {
       request.updatePathParameter(0, '1234');
-      expect(request.uri.current).toBe('http://example.com/dogs/1234/owner/{ownerId}');
+      expect(request.uri).toBe('http://example.com/dogs/1234/owner/{ownerId}');
 
       request.updatePathParameter(1, '1234');
-      expect(request.uri.current).toBe('http://example.com/dogs/1234/owner/1234');
+      expect(request.uri).toBe('http://example.com/dogs/1234/owner/1234');
     });
   });
 
