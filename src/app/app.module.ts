@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CoreModule } from './core';
+
+// TODO: remove for production
+import { playgroundJson } from './testing';
+import { MockHttpDataModule } from './shared/mock-data';
 
 @NgModule({
   declarations: [
@@ -11,8 +14,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    CoreModule.forRoot(playgroundJson),
+
+    // TODO: remove for production
+    MockHttpDataModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
