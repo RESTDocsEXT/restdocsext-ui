@@ -117,7 +117,7 @@ export class OperationRequest {
    * 
    * @argument name The name of the requet parameter (optional). Default null value.
    */
-  addRequestParameter(name: string = null): void {
+  addRequestParameter(name: string): void {
     if (isBlank(this.requestParameters)) {
       this.requestParameters = [];
     }
