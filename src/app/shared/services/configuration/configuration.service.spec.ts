@@ -18,4 +18,8 @@ describe('service: Configuration', () => {
     expect(configService.organizationName).toEqual('PetStore API');
     expect(configService.organizationLink).toEqual('http://stackoverflow.com');
   });
+
+  it('should use development environment for development', () => {
+    expect(configService.env.production).toBe(false);
+  });
 });

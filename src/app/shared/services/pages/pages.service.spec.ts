@@ -3,12 +3,16 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { Http, Response, ResponseOptions, BaseRequestOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { PagesService } from './pages.service';
+import { PagesService } from './index';
+import { Configuration } from '../configuration';
+import { MOCK_CONFIG_PROVIDER } from '../../../testing';
 
 describe('service: PagesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        MOCK_CONFIG_PROVIDER,
+        Configuration,
         PagesService,
         MockBackend,
         BaseRequestOptions,

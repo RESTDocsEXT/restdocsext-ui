@@ -2,6 +2,7 @@
 import { Injectable, Inject } from '@angular/core';
 
 import { RESTDOCSEXT_CONFIG } from '../../../index';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class Configuration {
@@ -11,6 +12,8 @@ export class Configuration {
   organizationName: string;
   pages: string[];
   baseUri: string;
+
+  env: any = environment;
 
   constructor(@Inject(RESTDOCSEXT_CONFIG) config) {
     let base = JSON.parse(config);

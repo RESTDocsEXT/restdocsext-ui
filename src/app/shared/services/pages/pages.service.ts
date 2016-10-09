@@ -6,13 +6,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
+import { Configuration } from '../configuration';
+
 @Injectable()
 export class PagesService {
 
-  private baseUrl = '/assets/mock-data/docs/';
+  private baseUrl;
   private _currentPage = new ReplaySubject<string>(1);
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private config: Configuration) {
+    this.baseUrl = config.env.baseDocsPath;
+  }
 
   set currentPage(path: string) {
     this.http.get(`${this.baseUrl + path}.html`)
