@@ -1,0 +1,15 @@
+
+.clickable {
+  cursor: pointer;
+}
+
+@mixin round-rectangle($width, $height, $bg-color, $border-radius) {
+  width: $width;
+  height: $height;
+  background-color: $bg-color;
+  border-radius: $border-radius;
+}
+
+@mixin method-badge($bg-color) {
+  @include round-rectangle(40px, 15px, $bg-color, 3px);
+}
