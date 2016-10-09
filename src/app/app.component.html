@@ -1,3 +1,19 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-layout>
+
+  <md-sidenav #sidenav mode="side" class="app-sidenav" opened="false">
+    <!-- app-side-menu (itemSelected)="onItemSelected($event)">
+    </app-side-menu -->
+  </md-sidenav>
+
+  <md-toolbar class="app-toolbar" color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+  </md-toolbar>
+
+  <div class="app-content">
+    App Content
+    <!-- router-outlet></router-outlet -->
+  </div>
+
+</md-sidenav-layout>
