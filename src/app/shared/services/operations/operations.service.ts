@@ -4,7 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
 import { Operation } from '../../models';
-import { RESTDOCSEXT_CONFIG } from '../../../index';
+import { RESTDOCSEXT_CONFIG } from '../../../app.properties';
 
 @Injectable()
 export class OperationsService {

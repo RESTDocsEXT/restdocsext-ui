@@ -1,7 +1,7 @@
 
 import { Injectable, Inject } from '@angular/core';
 
-import { RESTDOCSEXT_CONFIG } from '../../../index';
+import { RESTDOCSEXT_CONFIG } from '../../../app.properties';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()

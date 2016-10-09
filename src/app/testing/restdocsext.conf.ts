@@ -1,4 +1,4 @@
-import { RESTDOCSEXT_CONFIG } from '../index';
+import { RESTDOCSEXT_CONFIG } from '../app.properties';
 
 export const restdocsextConfJson =
 `{
