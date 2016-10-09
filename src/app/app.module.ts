@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core';
 
 // TODO: remove for production
-import { playgroundJson } from './testing';
+import { restdocsextConfJson } from './testing';
 import { MockHttpDataModule } from './shared/mock-data';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { MockHttpDataModule } from './shared/mock-data';
   ],
   imports: [
     BrowserModule,
-    CoreModule.forRoot(playgroundJson),
+    CoreModule.forRoot(restdocsextConfJson),
 
     // TODO: remove for production
     MockHttpDataModule.forRoot()

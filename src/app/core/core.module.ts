@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { PLAYGROUND_CONFIG } from '../index';
+import { RESTDOCSEXT_CONFIG } from '../index';
 import { Configuration } from '../shared/services/configuration';
 import { OperationsService } from '../shared/services/operations';
 import { PagesService } from '../shared/services/pages';
@@ -22,7 +22,7 @@ export class CoreModule {
         OperationsService,
         PagesService,
         {
-          provide: PLAYGROUND_CONFIG, useValue: config
+          provide: RESTDOCSEXT_CONFIG, useValue: config
         }
       ]
     };

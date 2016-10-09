@@ -1,6 +1,6 @@
-import { PLAYGROUND_CONFIG } from '../index';
+import { RESTDOCSEXT_CONFIG } from '../index';
 
-export const playgroundJson =
+export const restdocsextConfJson =
 `{
   "config": {
     "homePage": "Introduction",
@@ -198,6 +198,6 @@ export const mockJsonOperation =
 }`;
 
 export const MOCK_CONFIG_PROVIDER = {
-  provide: PLAYGROUND_CONFIG,
-  useValue: playgroundJson
+  provide: RESTDOCSEXT_CONFIG,
+  useValue: restdocsextConfJson
 };

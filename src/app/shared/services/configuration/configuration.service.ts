@@ -1,7 +1,7 @@
 
 import { Injectable, Inject } from '@angular/core';
 
-import { PLAYGROUND_CONFIG } from '../../../index';
+import { RESTDOCSEXT_CONFIG } from '../../../index';
 
 @Injectable()
 export class Configuration {
@@ -12,7 +12,7 @@ export class Configuration {
   pages: string[];
   baseUri: string;
 
-  constructor(@Inject(PLAYGROUND_CONFIG) config) {
+  constructor(@Inject(RESTDOCSEXT_CONFIG) config) {
     let base = JSON.parse(config);
     this.baseUri = base.baseUri;
     let conf = base.config;

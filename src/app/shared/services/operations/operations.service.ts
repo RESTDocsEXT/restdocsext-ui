@@ -3,8 +3,8 @@ import { Injectable, Inject } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
-import { Operation } from '../../models/operation.model';
-import { PLAYGROUND_CONFIG } from '../../../app.properties';
+import { Operation } from '../../models';
+import { RESTDOCSEXT_CONFIG } from '../../../index';
 
 @Injectable()
 export class OperationsService {
@@ -16,7 +16,7 @@ export class OperationsService {
     return this._operations;
   }
 
-  constructor(@Inject(PLAYGROUND_CONFIG) confJson: string) {
+  constructor(@Inject(RESTDOCSEXT_CONFIG) confJson: string) {
     let config = JSON.parse(confJson);
     this.convertConfigToOperations(config);
   }

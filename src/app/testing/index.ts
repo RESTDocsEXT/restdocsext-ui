@@ -1,2 +1,2 @@
 
-export * from './playground.conf';
+export * from './restdocsext.conf';

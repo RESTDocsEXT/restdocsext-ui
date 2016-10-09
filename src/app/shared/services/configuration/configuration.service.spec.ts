@@ -1,12 +1,12 @@
 
 import { Configuration } from './index';
-import { playgroundJson } from '../../../testing';
+import { restdocsextConfJson } from '../../../testing';
 
 describe('service: Configuration', () => {
   let configService: Configuration;
 
   beforeEach(() => {
-    configService = new Configuration(playgroundJson);
+    configService = new Configuration(restdocsextConfJson);
   });
 
   it('should contain required properties from json', () => {
