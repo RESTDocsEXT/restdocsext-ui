@@ -1,0 +1,107 @@
+@import '../../../assets/sass/variables';
+@import '../../../assets/sass/common';
+@import '../../../assets/sass/mixins';
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.side-menu {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $sidebar-menu-item-bg;
+
+  // all menu items
+  li {
+    text-indent: 20px;
+    line-height: 40px;
+    a {
+      display: block;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  }
+
+  .side-menu-brand {
+    line-height: $toolbar-height;
+    background-color: $brand-primary;
+    
+    a {
+      span {
+        position: relative;
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+  }
+
+  .side-menu-title {
+    color: $menu-header-text;
+    background-color: darken($sidebar-menu-item-bg, 3%);
+    border-top: 1px solid $menu-item-border;
+  }
+
+  .side-menu-item {
+    color: $menu-item-text !important;
+    border-top: 1px solid $menu-item-border;
+
+    i {
+      padding-top: $main-padding * 2.5;
+      padding-right: 20px;
+      font-size: 12px;
+    }
+
+    &:hover {
+      background: $menu-item-selected;
+      color: $brand-primary !important;
+    }
+  }
+
+  .side-menu-list {
+    padding-left: 0 !important;
+
+    li {
+      text-indent: 0;
+      padding-left: 20px;
+      border-top: none;
+
+      span {
+        display: inline-block;
+        font-size: 10px;
+        //width: 30px;
+        text-align: center;
+        color: white;
+        //position: relative;
+        //top: 10px;
+        line-height: 15px;
+      }
+
+      .get-badge {
+        @include method-badge($brand-success);
+      }
+      .put-badge {
+        @include method-badge($brand-primary);
+      }
+      .post-badge {
+        @include method-badge($brand-info);
+      }
+      .delete-badge {
+        @include method-badge($brand-danger);
+      }
+      .default-method-badge {
+        @include method-badge($brand-warning);
+      }
+
+      a {
+        display: inline-block;
+        text-indent: 20px;
+      }
+    }
+  }
+}
