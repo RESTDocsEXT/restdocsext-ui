@@ -5,15 +5,14 @@
     </app-side-menu>
   </md-sidenav>
 
-  <md-toolbar class="app-toolbar" color="primary">
+  <md-toolbar class="app-toolbar">
     <button class="app-icon-button" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
   </md-toolbar>
 
   <div class="app-content">
-    App Content
-    <!-- router-outlet></router-outlet -->
+    <router-outlet></router-outlet>
   </div>
 
 </md-sidenav-layout>
