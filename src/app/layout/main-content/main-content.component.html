@@ -1,3 +1,4 @@
-<p>
-  main-content works!
-</p>
+<div class="main-content row">
+  <app-documentation class="main-content-docs col-lg-12"></app-documentation>
+  <app-rest-client *ngIf="isOperation" class="main-content-client col-lg-12"></app-rest-client>
+</div>
