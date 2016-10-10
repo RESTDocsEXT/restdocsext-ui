@@ -6,6 +6,7 @@ import { Configuration } from '../shared/services/configuration';
 import { OperationsService } from '../shared/services/operations';
 import { PagesService } from '../shared/services/pages';
 import { SideMenuModule } from '../layout/side-menu';
+import { MainContentModule } from '../layout/main-content';
 
 import { MaterialModule } from '../shared/material.module';
 
@@ -15,7 +16,8 @@ import { MaterialModule } from '../shared/material.module';
     MaterialModule.forRoot()
   ],
   exports: [
-    SideMenuModule
+    SideMenuModule,
+    MainContentModule
   ],
   declarations: [ ]
 })
