@@ -3,10 +3,26 @@ import './polyfills.ts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
-import { AppModule } from './app/';
+import { createAppModule } from './app/';
+import { StandaloneHttp } from './app/shared/http';
+import 'rxjs/add/operator/first';
 
-if (environment.production) {
-  enableProdMode();
+StandaloneHttp.newInstance().get(environment.jsonConfigUrl)
+  .first()
+  .map(res => res.text())
+  .subscribe(
+    initializeApp,
+    handleError);
+
+function initializeApp(config) {
+  if (environment.production) {
+    enableProdMode();
+  }
+
+  platformBrowserDynamic().bootstrapModule(createAppModule(config));
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+function handleError(error) {
+  console.log(error);
+}
+
