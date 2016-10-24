@@ -1,5 +1,4 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpModule } from '@angular/http';
 
 import { RESTDOCSEXT_CONFIG } from '../app.properties';
 import { Configuration } from '../shared/services/configuration';
@@ -12,7 +11,6 @@ import { MaterialModule } from '../shared/material.module';
 
 @NgModule({
   imports: [
-    HttpModule,
     MaterialModule.forRoot()
   ],
   exports: [
