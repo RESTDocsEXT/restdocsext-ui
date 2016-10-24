@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+
 import { Subscription } from 'rxjs/Subscription';
 import { SpyObject } from '../index';
 
@@ -7,13 +7,6 @@ export abstract class AbstractMockObservableService extends SpyObject {
   protected _subscription: Subscription;
   protected _fakeContent: any;
   protected _fakeError: any;
-
-  constructor(type: Type<any>) {
-    super(type);
-
-    this._subscription = new Subscription();
-    spyOn(this._subscription, 'unsubscribe');
-  }
 
   set error(err) {
     this._fakeError = err;
@@ -28,6 +21,9 @@ export abstract class AbstractMockObservableService extends SpyObject {
   }
 
   subscribe(next: Function, error?: Function, complete?: Function): Subscription {
+    this._subscription = new Subscription();
+    spyOn(this._subscription, 'unsubscribe');
+
     if (next && this._fakeContent && !this._fakeError) {
       next(this._fakeContent);
     }
