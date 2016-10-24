@@ -5,27 +5,30 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
+import { AppHttpModule } from './shared/http';
 import { appRoutes } from './app.routing';
 
-// TODO: remove for production
-import { restdocsextConfJson } from './testing';
-import { MockHttpDataModule } from './shared/mock-data';
+import { environment } from '../environments/environment';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes(restdocsextConfJson)),
+export function createAppModule(config: string) {
 
-    CoreModule.forRoot(restdocsextConfJson),
-    SharedModule.forRoot(),
+  @NgModule({
+    declarations: [
+      AppComponent
+    ],
+    imports: [
+      BrowserModule,
 
-    // TODO: remove for production
-    MockHttpDataModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+      SharedModule.forRoot(),
+      CoreModule.forRoot(config),
+      RouterModule.forRoot(appRoutes(config)),
+      AppHttpModule.forRoot(environment),
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+  })
+  class AppModule { }
+
+  return AppModule;
+}
+
