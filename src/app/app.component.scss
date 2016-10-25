@@ -7,7 +7,7 @@
 }
 
 md-sidenav-layout {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
@@ -47,7 +47,7 @@ md-sidenav-layout /deep/ .md-sidenav-content {
 }
 
 .app-sidenav {
-  height: 100%;
+  min-height: 100%;
   padding: 0;
   width: 250px;
 }
