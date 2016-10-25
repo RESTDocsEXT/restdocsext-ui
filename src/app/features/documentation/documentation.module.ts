@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DocumentationComponent } from './documentation.component';
+import { DocumentationComponent } from './index';
 
 @NgModule({
   declarations: [ DocumentationComponent ],
