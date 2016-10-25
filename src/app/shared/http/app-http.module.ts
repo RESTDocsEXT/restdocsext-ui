@@ -39,7 +39,9 @@ export class AppHttpModule {
             if (environment.production) {
               return new XHRBackend(browser, options, xsrf);
             } else {
-              return new InMemoryBackendService(injector, new MockData(), {});
+              return new InMemoryBackendService(injector, new MockData(), {
+                passThruUnknownUrl: true
+              });
             }
           },
           deps: [Injector, BrowserXhr, XSRFStrategy, ResponseOptions]
