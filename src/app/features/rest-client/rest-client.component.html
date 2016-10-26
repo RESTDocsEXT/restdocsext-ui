@@ -1,3 +1,25 @@
-<p>
-  rest-client works!
-</p>
+<div class="rest-client-content">
+  <div class="rest-client-actions">
+    <div class="btn-group" [(ngModel)]="currentView" ngbRadioGroup>
+      <label *ngFor="let view of views" class="btn btn-sm btn-primary">
+        <input type="radio" name="view" [value]="view"/>{{ view }}
+      </label>
+    </div>
+    <button type="button" class="btn btn-primary pull-right" (click)="sendRequest()">Send</button>
+  </div>
+  <div class="response-status" *ngIf="response">
+    <span class="tag tag-{{ getStatusColor() }}">{{ response.status }}</span>
+    {{ response.statusText }}
+  </div>
+  <div class="request-errors" *ngIf="requestErrors">
+  </div>
+  <div class="rest-client-views">
+    <rest-client-request [style.display]="getDisplay('Request')" 
+                         [request]="request"
+                         [operation]="operation">
+    </rest-client-request>
+    <!-- rest-client-auth [style.display]="getDisplay('Auth')"></rest-client-auth -->
+    <!-- rest-client-preview [style.display]="getDisplay('Preview')" [request]="request"></rest-client-preview -->
+    <!-- rest-client-response [style.display]="getDisplay('Response')" [response]="response"></rest-client-response -->
+  </div>
+</div>

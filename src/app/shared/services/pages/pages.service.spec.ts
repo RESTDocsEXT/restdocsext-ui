@@ -1,27 +1,20 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 
-import { Http, Response, ResponseOptions, BaseRequestOptions } from '@angular/http';
+import { Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { PagesService } from './index';
 import { Configuration } from '../configuration';
-import { MOCK_CONFIG_PROVIDER } from '../../../testing';
+import { MOCK_CONFIG_PROVIDER, HttpTestingModule } from '../../../testing';
 
 describe('service: PagesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpTestingModule ],
       providers: [
         MOCK_CONFIG_PROVIDER,
         Configuration,
         PagesService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http, useFactory: (backend, options) => {
-            return new Http(backend, options);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        }
       ]
     });
   });

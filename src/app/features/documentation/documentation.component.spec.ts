@@ -5,7 +5,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { PagesService } from '../../shared/services/pages';
 import { MockPagesService } from '../../testing';
 
-import { DocumentationComponent, DocumentationModule } from './index';
+import { DocumentationModule } from './index';
+import { DocumentationComponent } from './documentation.component';
 
 const HTML = '<h2>Content</h2>';
 

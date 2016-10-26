@@ -1,0 +1,97 @@
+<div class="request-url input-group">
+  <span class="input-group-addon" id="basic-addon1" [ngClass]="methodClass()">
+    {{ request?.httpMethod }}
+  </span>
+  <input type="text" class="form-control" disabled 
+         aria-describedby="basic-addon1"
+         [value]="baseUri + request?.uri.current">
+</div>
+<ngb-tabset (tabChange)="onTabChanged($event)" activeId="request-body-tab">
+  <ngb-tab *ngIf="showBody()" title="Body" id="request-body-tab">
+    <template ngbTabContent>
+      <div aceEditor class="ace-editor"
+           [text]="request.requestBody"
+           [(ngModel)]="request.requestBody"
+           name="request-editor">
+      </div>
+      <div>
+        {{ editorText | json }}
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab *ngIf="request?.pathParameters" title="Path Params" id="request-path-params-tab">
+    <template ngbTabContent>
+      <div *ngFor="let param of request.pathParameters; let i = index" class="input-group">
+        <span class="input-group-addon">{{ param.key }}</span>
+        <input type="text" class="form-control" 
+               [ngModel]="param.value"
+               (ngModelChange)="onPathParamChange($event, i)"
+               aria-label="Path param input">
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab *ngIf="operation?.requestParameters" title="Request Params" id="request-request-params-tabs">
+    <template ngbTabContent>
+      <div class="request-param-options clearfix">
+        <div ngbDropdown [open]="false" class="pull-right">
+          <button ngbDropdownToggle class="btn btn-sm btn-primary">Add Request Parameter</button>
+          <div class="dropdown-menu" aria-labelledby="queryParamMenu">
+            <a *ngFor="let param of operation.requestParameters" 
+               (click)="addRequestParameter(param.name)"
+               class="dropdown-item clickable">
+              {{ param.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="request-param-inputs" *ngIf="request?.requestParameters">
+        <div class="request-param-input" *ngFor="let param of request.requestParameters; let i = index">
+          <div class="input-group">
+            <span class="input-group-addon">{{ param.key }}</span>
+            <input type="text" class="form-control" 
+                  [ngModel]="param.value"
+                  (ngModelChange)="onRequestParamChange($event, i)"
+                  aria-label="Request param input"> 
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" (click)="onRemoveRequestParam(i)">remove</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Headers" id="request-request-headers-tab">
+    <template ngbTabContent>
+      <button class="btn btn-sm btn-primary pull-right button-custom-header" (click)="addRequestHeader()">
+          Add Custom Header
+      </button>
+      <div class="request-header-options clearfix">
+        <div ngbDropdown [open]="false" class="pull-right dropdown-defined-header"
+             *ngIf="operation?.requestHeaders">
+          <button ngbDropdownToggle class="btn btn-sm btn-primary">Add Defined Header</button>
+          <div class="dropdown-menu" aria-labelledby="requestHeaderMenu">
+            <a *ngFor="let header of operation.requestHeaders" 
+               (click)="addRequestHeader(header.name)"
+               class="dropdown-item clickable">
+              {{ header.name }}
+            </a>
+          </div>
+        </div>
+        
+      </div>
+      <div class="request-header-inputs" *ngIf="request?.requestHeaders">
+        <div class="request-header-input row"
+             *ngFor="let header of request.requestHeaders; let i = index">
+          <div class="col-xs-11">
+            <input type="text" class="form-control" [(ngModel)]="header.key" placeholder="name">
+          </div>
+          <div class="col-xs-11">
+            <input type="text" class="form-control" [(ngModel)]="header.value" placeholder="value">
+          </div>
+          <button type="button" class="btn btn-sm btn-primary div col-xs-2"
+                  (click)="onRemoveRequestHeader(i)">x</button>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+</ngb-tabset>

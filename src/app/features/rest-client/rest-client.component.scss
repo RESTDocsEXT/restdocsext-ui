@@ -1,0 +1,36 @@
+@import '../../../assets/sass/variables';
+
+:host {
+  height: 100%;
+  display: block;
+}
+
+.rest-client-content {
+  padding: 20px 0 20px 0;
+
+  .rest-client-actions {
+    margin-bottom: 30px;
+  }
+
+  .btn-group {
+    label.btn.btn-primary {
+      border-color: $brand-primary;
+      &.active {
+        background-color: $brand-primary;
+        color: white;
+      }
+      &:not(.active) {
+        background-color: white;
+        color: $brand-primary;
+      }
+    }
+  }
+}
+
+.response-status .tag {
+  h6 {
+    display: inline;
+  }
+  margin-right: 10px;
+  margin-bottom: 20px;
+}

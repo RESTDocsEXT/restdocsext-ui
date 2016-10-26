@@ -1,0 +1,59 @@
+@import '../../../../assets/sass/variables';
+
+.ace-editor {
+  height: 250px;
+  width: 100%;
+}
+
+.request-url {
+  margin-bottom: 20px;
+
+  .input-group-addon {
+    color: white;
+    width: 75px;
+
+    &.primary { background-color: $brand-primary }
+    &.success { background-color: $brand-success }
+    &.warning { background-color: $brand-warning }
+    &.danger  { background-color: $brand-danger }
+    &.info    { background-color: $brand-info }
+  }
+}
+
+.nav.nav-tabs {
+  .nav-item.active {
+    border-top: ($nav-tabs-border-width * 2) solid $brand-primary;
+  }
+}
+
+.tab-content {
+  padding: 20px;
+  min-height: 300px;
+  border: $nav-tabs-border-width solid $nav-tabs-border-color;
+  border-top: none;
+}
+
+.request-param-input, .request-param-inputs {
+  margin-top: 20px;
+}
+
+.dropdown-defined-header {
+  display: inline-block;
+}
+
+.request-header-input {
+  padding: 0 20px;
+
+  &.row {
+    margin: 20px 0 0 0;
+    padding: 0;
+  }
+
+  div {
+    padding-left: 0;
+  }
+
+  .btn {
+    vertical-align: middle;
+  }
+}

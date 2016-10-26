@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IterablePipe } from './pipes';
+import { AceEditorDirective } from './directives';
 
 import { AccordionModule } from './components/accordion';
-
 import { MaterialModule } from './material.module';
+import { NgBootstrapModule } from './ngbootstrap.module';
 
 
 @NgModule({
@@ -20,12 +21,13 @@ import { MaterialModule } from './material.module';
     FormsModule,
 
     IterablePipe,
+    AceEditorDirective,
 
     AccordionModule,
-
-    MaterialModule
+    MaterialModule,
+    NgBootstrapModule
   ],
-  declarations: [ IterablePipe ]
+  declarations: [ IterablePipe, AceEditorDirective ]
 })
 export class SharedModule {
 
