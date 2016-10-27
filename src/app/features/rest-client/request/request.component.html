@@ -4,7 +4,7 @@
   </span>
   <input type="text" class="form-control" disabled 
          aria-describedby="basic-addon1"
-         [value]="baseUri + request?.uri.current">
+         [value]="baseUri + request?.uri">
 </div>
 <ngb-tabset (tabChange)="onTabChanged($event)" activeId="request-body-tab">
   <ngb-tab *ngIf="showBody()" title="Body" id="request-body-tab">
