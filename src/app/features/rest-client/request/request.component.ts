@@ -52,7 +52,7 @@ export class RestClientRequestComponent implements AfterViewInit, OnChanges {
   }
 
   showBody(): boolean {
-    return this.request ? isPresent(this.request.requestBody) : false;
+    return this.operation ? isPresent(this.operation.requestBody) : false;
   }
 
   methodClass() {
