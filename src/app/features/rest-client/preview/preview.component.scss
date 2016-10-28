@@ -1,0 +1,10 @@
+@import '../../../../assets/sass/variables';
+
+.request-preview {
+  height: 350px;
+  width: 100%;
+  font-family: monospace;
+  color: $input-color;
+  padding: 10px;
+  border: $input-btn-border-width solid $input-border-color;
+}
