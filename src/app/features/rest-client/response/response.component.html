@@ -1,0 +1,30 @@
+<div *ngIf="!response" class="response-default">
+  There is currently no response. Please make a request.
+</div>
+<ngb-tabset (tabChange)="onTabChanged($event)" *ngIf="response">
+  <ngb-tab *ngIf="showBody()" title="Body" id="response-body-tab">
+    <template ngbTabContent>
+      <div aceEditor class="ace-editor"
+           [text]="response.data"
+           [readOnly]="true">
+      </div>
+      <div>
+        {{ editorText | json }}
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab *ngIf="response?.responseHeaders" title="Response Headers" id="response-headers-tabs">
+    <template ngbTabContent>
+      <div class="response-header-names">
+        <div *ngFor="let header of response.responseHeaders">
+          <span class="response-header-name">{{ header.key }}</span>
+        </div>
+      </div>
+      <div class="response-header-values">
+        <div *ngFor="let header of response.responseHeaders" class="response-header-value">
+          <span class="response-header-value">{{ header.value }}</span>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+</ngb-tabset>

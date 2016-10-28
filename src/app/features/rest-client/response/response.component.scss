@@ -1,0 +1,23 @@
+
+.response-header-names {
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.response-header-values {
+  padding: 0 20px;
+}
+
+.response-header-names, .response-header-values {
+  display: inline-block;
+}
+
+.response-header-name {
+  font-weight: bold;
+  text-align: right;
+}
+
+.response-header-name, .response-heade-value {
+  line-height: 1em;
+  vertical-align: middle;
+}

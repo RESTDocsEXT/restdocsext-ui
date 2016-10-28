@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RestClientComponent } from './rest-client.component';
 import { RestClientRequestComponent } from './request/request.component';
 import { RestClientPreviewComponent } from './preview/preview.component';
+import { RestClientResponseComponent } from './response/response.component';
 import { SharedModule } from '../../shared';
 
 @NgModule({
@@ -10,7 +11,8 @@ import { SharedModule } from '../../shared';
   declarations: [
     RestClientComponent,
     RestClientRequestComponent,
-    RestClientPreviewComponent
+    RestClientPreviewComponent,
+    RestClientResponseComponent
   ],
   exports: [ RestClientComponent ]
 })
