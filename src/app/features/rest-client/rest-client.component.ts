@@ -26,8 +26,8 @@ export class RestClientComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private requestService: RequestService,
-    private operationsService: OperationsService,
-    private styles: StylesService) {
+              private operationsService: OperationsService,
+              private styles: StylesService) {
 
   }
 
@@ -37,6 +37,7 @@ export class RestClientComponent implements OnInit, OnDestroy {
         this.operation = op;
         this.request = OperationRequest.fromOperation(op);
         this.response = null;
+        this.currentView = 'Request';
       });
   }
 
