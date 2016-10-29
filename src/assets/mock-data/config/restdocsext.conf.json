@@ -79,7 +79,7 @@
           }
         },
         {
-          "name": "Get all cats",
+          "name": "Get all dogs",
           "collection": "Dogs",
           "path": "/dogs",
           "httpMethod": "GET",
