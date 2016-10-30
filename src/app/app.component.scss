@@ -7,7 +7,7 @@
 }
 
 md-sidenav-layout {
-  min-height: 100%;
+  height: 100%;
   width: 100%;
 }
 
@@ -50,4 +50,5 @@ md-sidenav-layout /deep/ .md-sidenav-content {
   min-height: 100%;
   padding: 0;
   width: 250px;
+  background: $sidebar-menu-item-bg;
 }
