@@ -6,30 +6,32 @@
     </a>
   </li>
 
-  <li class="side-menu-title">GENERAL</li>
+  <div class="sidemenu-content">
+    <li class="side-menu-title">GENERAL</li>
 
-  <li *ngFor="let page of pages" >
-    <a class="clickable side-menu-item" (click)="onItemSelected(page)">{{ page }}</a>
-  </li>
+    <li *ngFor="let page of pages" >
+      <a class="clickable side-menu-item" (click)="onItemSelected(page)">{{ page }}</a>
+    </li>
 
-  <li class="side-menu-title">COLLECTIONS</li>
+    <li class="side-menu-title">COLLECTIONS</li>
 
-  <app-accordion [closeOthers]="true">
-    <app-accordion-item *ngFor="let collection of operations | iterable" [open]="false" #item>
-      <li accordion-heading class="clickable side-menu-item">
-        {{ collection.key }}
-        <i class="pull-right fa"
-           [ngClass]="{'fa-chevron-down': item?.open, 'fa-chevron-right': !item || !item.open}"></i>
-      </li>
-      <ul class="side-menu-list">
-        <li class="clickable side-menu-item"
-            *ngFor="let operation of collection.value" 
-            (click)="onItemSelected(operation)">
-          <span [ngClass]="getBadgeStyle(operation.httpMethod)">{{ operation.httpMethod }}</span>
-          <a>{{ operation.name }}</a>
+    <app-accordion [closeOthers]="true">
+      <app-accordion-item *ngFor="let collection of operations | iterable" [open]="false" #item>
+        <li accordion-heading class="clickable side-menu-item">
+          {{ collection.key }}
+          <i class="pull-right fa"
+            [ngClass]="{'fa-chevron-down': item?.open, 'fa-chevron-right': !item || !item.open}"></i>
         </li>
-      </ul>
-    </app-accordion-item>
-  </app-accordion>
+        <ul class="side-menu-list">
+          <li class="clickable side-menu-item"
+              *ngFor="let operation of collection.value" 
+              (click)="onItemSelected(operation)">
+            <span [ngClass]="getBadgeStyle(operation.httpMethod)">{{ operation.httpMethod }}</span>
+            <a>{{ operation.name }}</a>
+          </li>
+        </ul>
+      </app-accordion-item>
+    </app-accordion>
+  </div>
 
 </ul>

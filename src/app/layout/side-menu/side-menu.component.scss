@@ -8,14 +8,11 @@
 }
 
 .side-menu {
-  position: absolute;
-  top: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   background: transparent;
- //  background: $sidebar-menu-item-bg;
 
   // all menu items
   li {
@@ -31,7 +28,6 @@
   .side-menu-brand {
     line-height: $toolbar-height;
     background-color: $brand-primary;
-    
     a {
       span {
         position: relative;
