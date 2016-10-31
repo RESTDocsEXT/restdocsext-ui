@@ -53,7 +53,12 @@
     padding-left: 0;
   }
 
-  .btn {
-    vertical-align: middle;
+  .remove-btn {
+    color: $input-border-color;
+
+    &:hover {
+
+      color: darken($input-border-color, 20%);
+    }
   }
 }

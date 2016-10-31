@@ -5,7 +5,9 @@
         <input type="radio" name="view" [value]="view"/>{{ view }}
       </label>
     </div>
-    <button type="button" class="btn btn-primary pull-right" (click)="sendRequest()">Send</button>
+    <button class="send-btn" type="button" class="btn btn-sm btn-primary pull-right" (click)="sendRequest()">
+      <span>Send</span>
+    </button>
   </div>
   <div class="response-status" *ngIf="response">
     <span class="tag tag-{{ getStatusColor() }}">{{ response.status }}</span>

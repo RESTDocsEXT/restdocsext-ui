@@ -339,6 +339,7 @@ $btn-border-radius-sm:           $border-radius-sm !default;
 $input-padding-x:                .75rem !default;
 $input-padding-y:                .5rem !default;
 $input-line-height:              1.25 !default;
+// $input-line-height:              1.25 !default;
 
 $input-bg:                       #fff !default;
 $input-bg-disabled:              #fff;
@@ -524,7 +525,8 @@ $navbar-light-disabled-color:       rgba(0,0,0,.15) !default;
 
 $nav-item-margin:               .2rem !default;
 $nav-item-inline-spacer:        1rem !default;
-$nav-link-padding:              .5em 1em !default;
+// $nav-link-padding:              .5em 1em !default;
+$nav-link-padding:              .25em 1em !default;
 $nav-link-hover-bg:             $gray-lighter !default;
 $nav-disabled-link-color:       $gray-light !default;
 $nav-disabled-link-hover-color: $gray-light !default;

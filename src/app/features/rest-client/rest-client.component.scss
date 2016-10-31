@@ -6,10 +6,10 @@
 }
 
 .rest-client-content {
-  padding: 20px 0 20px 0;
+  padding: 20px;
 
   .rest-client-actions {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .btn-group {
@@ -24,6 +24,11 @@
         color: $brand-primary;
       }
     }
+  }
+
+  .send-btns {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 

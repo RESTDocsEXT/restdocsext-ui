@@ -1,4 +1,4 @@
-<div class="request-url input-group">
+<div class="request-url input-group input-group-sm">
   <span class="input-group-addon" id="basic-addon1" [ngClass]="methodClass()">
     {{ request?.httpMethod }}
   </span>
@@ -21,7 +21,7 @@
   </ngb-tab>
   <ngb-tab *ngIf="request?.pathParameters" title="Path Params" id="request-path-params-tab">
     <template ngbTabContent>
-      <div *ngFor="let param of request.pathParameters; let i = index" class="input-group">
+      <div *ngFor="let param of request.pathParameters; let i = index" class="input-group input-group-sm">
         <span class="input-group-addon">{{ param.key }}</span>
         <input type="text" class="form-control" 
                [ngModel]="param.value"
@@ -46,7 +46,7 @@
       </div>
       <div class="request-param-inputs" *ngIf="request?.requestParameters">
         <div class="request-param-input" *ngFor="let param of request.requestParameters; let i = index">
-          <div class="input-group">
+          <div class="input-group input-group-sm">
             <span class="input-group-addon">{{ param.key }}</span>
             <input type="text" class="form-control" 
                   [ngModel]="param.value"
@@ -83,13 +83,14 @@
         <div class="request-header-input row"
              *ngFor="let header of request.requestHeaders; let i = index">
           <div class="col-xs-11">
-            <input type="text" class="form-control" [(ngModel)]="header.key" placeholder="name">
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="header.key" placeholder="name">
           </div>
           <div class="col-xs-11">
-            <input type="text" class="form-control" [(ngModel)]="header.value" placeholder="value">
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="header.value" placeholder="value">
           </div>
-          <button type="button" class="btn btn-sm btn-primary div col-xs-2"
-                  (click)="onRemoveRequestHeader(i)">x</button>
+          <span class="remove-btn col-xs-1 clickable" (click)="onRemoveRequestHeader(i)">
+            <i class="fa fa-times"></i>
+          </span>
         </div>
       </div>
     </template>
