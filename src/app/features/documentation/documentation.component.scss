@@ -7,10 +7,11 @@
 
 .documentation-content {
   padding: 20px;
+
+  pre {
+    background: $code-block-bg;
+    color: $code-block-color;
+    padding: 0 20px 20px 20px;
+  }
 }
 
-pre {
-  background: $code-block-bg;
-  color: $code-block-color;
-  padding: 0 20px 20px 20px;
-}
