@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { PagesService } from '../../shared/services/pages';
@@ -6,7 +6,8 @@ import { PagesService } from '../../shared/services/pages';
 @Component({
   selector: 'app-documentation',
   templateUrl: './documentation.component.html',
-  styleUrls: ['./documentation.component.scss']
+  styleUrls: ['./documentation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DocumentationComponent implements OnInit, OnDestroy {
 
