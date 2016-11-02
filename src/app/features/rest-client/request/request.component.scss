@@ -1,7 +1,7 @@
 @import '../../../../assets/sass/variables';
 
 .ace-editor {
-  height: 250px;
+  height: $ace-editor-height;
   width: 100%;
 }
 
@@ -10,7 +10,7 @@
 
   .input-group-addon {
     color: white;
-    width: 75px;
+    width: $request-url-method-width;
 
     &.primary { background-color: $brand-primary }
     &.success { background-color: $brand-success }
@@ -28,7 +28,7 @@
 
 .tab-content {
   padding: $main-padding;
-  min-height: 300px;
+  min-height: $request-tab-content-height;
   border: $nav-tabs-border-width solid $nav-tabs-border-color;
   border-top: none;
 }

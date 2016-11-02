@@ -1,9 +1,9 @@
 @import '../../../../assets/sass/variables';
 
 .request-preview {
-  height: 350px;
+  height: $preview-window-height;
   width: 100%;
-  font-family: monospace;
+  font-family: $preview-font;
   color: $input-color;
   padding: 10px;
   border: $input-btn-border-width solid $input-border-color;

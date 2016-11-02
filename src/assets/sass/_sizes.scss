@@ -1,4 +1,13 @@
 
+// Table of Contents
+// -----------------
+// Common
+// Padding
+// Toolbar
+// Side Menu
+// Request View
+// Preview View
+
 /* Padding */
 $padding-xs: 0.5em;
 $padding-sm: 1em;
@@ -7,4 +16,24 @@ $padding-lg: 2em;
 $padding-xl: 2.5em;
 $main-padding: 20px;
 
+/* Common */
+$ace-editor-height: 250px;
+
+/* Toolbar */
 $toolbar-height: 60px;
+
+/* Side Menu */
+$side-menu-width: 250px;
+$side-menu-item-line-height: 40px;
+$side-menu-item-indent: 20px;
+$side-menu-item-font-size: 16px;
+$side-menu-item-icon-size: 12px;
+$side-menu-brand-font-size: 22px;
+
+/* Request View */
+$request-tab-content-height: 300px;
+$request-url-method-width: 65px;
+
+/* Preview View */
+$preview-window-height: 350px;
+$preview-font: monospace;

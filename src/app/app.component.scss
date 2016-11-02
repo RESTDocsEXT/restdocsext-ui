@@ -16,7 +16,7 @@ md-sidenav-layout /deep/ .md-sidenav-content {
 }
 
 .app-content {
-  height: calc(100% - 64px);
+  height: calc(100% - $toolbar-height);
   overflow: auto;
 }
 
@@ -49,6 +49,6 @@ md-sidenav-layout /deep/ .md-sidenav-content {
 .app-sidenav {
   min-height: 100%;
   padding: 0;
-  width: 250px;
+  width: $side-menu-width;
   background: $sidebar-menu-item-bg;
 }
