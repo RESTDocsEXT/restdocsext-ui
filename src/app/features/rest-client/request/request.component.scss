@@ -6,7 +6,7 @@
 }
 
 .request-url {
-  margin-bottom: 20px;
+  margin-bottom: $main-padding;
 
   .input-group-addon {
     color: white;
@@ -27,14 +27,14 @@
 }
 
 .tab-content {
-  padding: 20px;
+  padding: $main-padding;
   min-height: 300px;
   border: $nav-tabs-border-width solid $nav-tabs-border-color;
   border-top: none;
 }
 
 .request-param-input, .request-param-inputs {
-  margin-top: 20px;
+  margin-top: $main-padding;
 }
 
 .dropdown-defined-header {
@@ -42,10 +42,10 @@
 }
 
 .request-header-input {
-  padding: 0 20px;
+  padding: 0 $main-padding;
 
   &.row {
-    margin: 20px 0 0 0;
+    margin: $main-padding 0 0 0;
     padding: 0;
   }
 

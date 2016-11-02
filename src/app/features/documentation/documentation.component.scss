@@ -6,12 +6,12 @@
 }
 
 .documentation-content {
-  padding: 20px;
+  padding: $main-padding;
 
   pre {
     background: $code-block-bg;
     color: $code-block-color;
-    padding: 0 20px 20px 20px;
+    padding: 0 $main-padding $main-padding $main-padding;
   }
 }
 

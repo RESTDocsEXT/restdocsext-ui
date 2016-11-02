@@ -1,11 +1,12 @@
+@import '../../../../assets/sass/variables';
 
 .response-header-names {
-  padding-right: 20px;
+  padding-right: $main-padding;
   border-right: 1px solid #ddd;
 }
 
 .response-header-values {
-  padding: 0 20px;
+  padding: 0 $main-padding;
 }
 
 .response-header-names, .response-header-values {

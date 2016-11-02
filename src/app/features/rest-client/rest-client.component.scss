@@ -6,10 +6,10 @@
 }
 
 .rest-client-content {
-  padding: 20px;
+  padding: $main-padding;
 
   .rest-client-actions {
-    margin-bottom: 20px;
+    margin-bottom: $main-padding;
   }
 
   .btn-group {
@@ -26,7 +26,7 @@
     }
   }
 
-  .send-btns {
+  .send-btn {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -36,6 +36,6 @@
   h6 {
     display: inline;
   }
-  margin-right: 10px;
-  margin-bottom: 20px;
+  margin-right: $main-padding / 2;
+  margin-bottom: $main-padding;
 }
