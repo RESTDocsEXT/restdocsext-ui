@@ -9,7 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 @Pipe({ name: 'iterable' })
 export class IterablePipe implements PipeTransform {
-  transform(iterable: any, args: any[]): any {
+  transform(iterable: any, args?: any[]): any {
     let result = [];
 
     // ES6 Map
