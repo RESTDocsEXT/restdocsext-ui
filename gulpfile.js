@@ -3,6 +3,8 @@ var gulp = require('gulp');
 var zip = require('gulp-zip');
 var del = require('del');
 var exec = require('child_process').exec;
+var crypto = require('crypto');
+var fs = require('fs');
 
 /**
  * Build for production
@@ -42,20 +44,6 @@ gulp.task('deleteDevAssets', ['ng:build:prod'], function (done) {
 });
 
 /**
- * Delete dist files. We only want them for the zip. Once the zip is complete,
- * the dist files should be deleted so they don't go in source control.
- */
-gulp.task('deleteDistFiles', ['zipBuild'], function (done) {
-  del(['dist/**/*', '!dist', '!dist/restdocsext-ui.zip']).then(function(paths) {
-    console.log('Deleted files and folders:\n', paths.join('\n'));
-    done();
-  }).catch(function(error) {
-    console.log(error);
-    done(error);
-  });
-});
-
-/**
  * Zips distribution (dependent on build)
  */
 gulp.task('zipBuild', ['ng:build:prod', 'deleteDevAssets'], function(done) {
@@ -72,12 +60,46 @@ gulp.task('zipOnly', function () {
   gulp.src(['dist/**/*', '!dist/assets/mock-data/**/*'])
     .pipe(zip('restdocsext-iu.zip'))
     .pipe(gulp.dest('dist')) 
-})
+});
 
 /**
- * Build in production then zips
+ * Delete dist files. We only want them for the zip. Once the zip is complete,
+ * the dist files should be deleted so they don't go in source control.
  */
-gulp.task('build:dist', ['ng:build:prod', 'deleteDevAssets', 'zipBuild', 'deleteDistFiles']);
+gulp.task('deleteDistFiles', ['zipBuild'], function (done) {
+  del(['dist/**/*', '!dist', '!dist/restdocsext-ui.zip']).then(function(paths) {
+    console.log('Deleted files and folders:\n', paths.join('\n'));
+    done();
+  }).catch(function(error) {
+    console.log(error);
+    done(error);
+  });
+});
+
+/**
+ * Generate checksum files:
+ * - restdocsext-ui.zip.sha1
+ * - restdocsext-ui.zip.md5
+ */
+gulp.task('generateChecksums', ['deleteDistFiles'], function (done) {
+  var fileName = 'dist/restdocsext-ui.zip';
+  var sha1 = crypto.createHash('sha1');
+  var md5 = crypto.createHash('md5');
+  var stream = fs.createReadStream(fileName);
+
+  stream.on('data', function (data) {
+    sha1.update(data);
+    md5.update(data);
+  });
+  stream.on('end', function () {
+    fs.writeFileSync(fileName + '.sha1', sha1.digest('hex'));
+    fs.writeFileSync(fileName + '.md5', md5.digest('hex'));
+    done();
+  });
+  stream.on('error', function(error) {
+    done(error);
+  });
+});
 
 /**
  * Copy mock JSON config and mock pages to distribution assets. This should only be use
@@ -89,3 +111,16 @@ gulp.task('copyMockContent', function () {
   gulp.src('src/assets/mock-data/docs/**/*')
     .pipe(gulp.dest('dist/assets/docs'));
 });
+
+/**
+ * Build in production then zips. All the tasks listed are in the order
+ * they should be executed. All async tasks should use async task dependency.
+ */
+gulp.task('build:dist', [
+  'ng:build:prod',
+  'deleteDevAssets',
+  'zipBuild',
+  'deleteDistFiles',
+  'generateChecksums'
+]);
+
