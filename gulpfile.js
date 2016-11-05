@@ -23,7 +23,7 @@ gulp.task('ng:build:prod', function(done) {
     process.stderr.write(data.toString());
   });
   build.on('exit', function (code) {
-    process.stdout.write('ng build exited');
+    process.stdout.write('ng build exited\n');
   });
 });
 
@@ -31,21 +31,38 @@ gulp.task('ng:build:prod', function(done) {
  * Delete development assets like sass and mock-data.
  * Should be used after the production build and before the zip
  */
-gulp.task('deleteDevAssets', ['ng:build:prod'], function () {
-  del(['dist/assets/mock-data', 'dist/assets/sass']).then(function() {
+gulp.task('deleteDevAssets', ['ng:build:prod'], function (done) {
+  del(['dist/assets/mock-data', 'dist/assets/sass', '!dist/assets']).then(function(paths) {
     console.log('Deleted files and folders:\n', paths.join('\n'));
+    done();
   }).catch(function (error) {
     console.log(error);
+    done(error);
+  });
+});
+
+/**
+ * Delete dist files. We only want them for the zip. Once the zip is complete,
+ * the dist files should be deleted so they don't go in source control.
+ */
+gulp.task('deleteDistFiles', ['zipBuild'], function (done) {
+  del(['dist/**/*', '!dist', '!dist/restdocsext-ui.zip']).then(function(paths) {
+    console.log('Deleted files and folders:\n', paths.join('\n'));
+    done();
+  }).catch(function(error) {
+    console.log(error);
+    done(error);
   });
 });
 
 /**
  * Zips distribution (dependent on build)
  */
-gulp.task('zipBuild', ['ng:build:prod', 'deleteDevAssets'], function() {
+gulp.task('zipBuild', ['ng:build:prod', 'deleteDevAssets'], function(done) {
   gulp.src(['dist/**/*', '!dist/assets/mock-data/**/*'])
-    .pipe(zip('restdocsext-iu.zip'))
+    .pipe(zip('restdocsext-ui.zip'))
     .pipe(gulp.dest('dist')) 
+    .on('end', done)
 });
 
 /**
@@ -60,7 +77,7 @@ gulp.task('zipOnly', function () {
 /**
  * Build in production then zips
  */
-gulp.task('build:dist', ['zipBuild']);
+gulp.task('build:dist', ['ng:build:prod', 'deleteDevAssets', 'zipBuild', 'deleteDistFiles']);
 
 /**
  * Copy mock JSON config and mock pages to distribution assets. This should only be use
