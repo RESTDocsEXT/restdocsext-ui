@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  baseDocsPath: '/assets/docs/',
+  baseDocsPath: 'assets/docs/',
 
-  jsonConfigUrl: '/assets/config/restdocsext.conf.json'
+  jsonConfigUrl: 'assets/config/restdocsext.conf.json'
 };

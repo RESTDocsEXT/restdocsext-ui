@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
 
-  baseDocsPath: '/assets/mock-data/docs/',
+  baseDocsPath: 'assets/mock-data/docs/',
 
-  jsonConfigUrl: '/assets/mock-data/config/restdocsext.conf.json'
+  jsonConfigUrl: 'assets/mock-data/config/restdocsext.conf.json'
 };
