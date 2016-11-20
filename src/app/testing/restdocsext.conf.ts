@@ -15,7 +15,7 @@ export const restdocsextConfJson =
   "collections": [
     {
       "name": "Cats",
-      "apis": [
+      "operations": [
         {
           "name": "Create a cat",
           "collection": "Cats",
@@ -70,7 +70,7 @@ export const restdocsextConfJson =
     },
     {
       "name": "Dogs",
-      "apis": [
+      "operations": [
         {
           "name": "Create a dog",
           "collection": "Dogs",
@@ -122,7 +122,7 @@ export const restdocsextConfJson =
     },
     {
       "name": "Birds",
-      "apis": [
+      "operations": [
         {
           "name": "Create a bird",
           "collection": "Birds",

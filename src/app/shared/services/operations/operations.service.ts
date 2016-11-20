@@ -80,25 +80,29 @@ export class OperationsService {
     let collections: any[] = config.collections;
     let idCounter = 0;
 
-    collections.sort(this.collectionComparator);
+    collections.sort(this.collComparator);
     for (let i = 0; i < collections.length; i++) {
       let collection = collections[i];
-      collection.apis.sort(this.apiComparator);
-      let ops: Operation[] = [];
-      for (let j = 0; j < collection.apis.length; j++) {
-        let api = collection.apis[j];
-        api.id = ++idCounter;
-        ops.push(Operation.fromConfig(api));
+      if (collection.operations && collection.operations.length > 0) {
+        collection.operations.sort(this.opComparator);
+        let ops: Operation[] = [];
+        for (let j = 0; j < collection.operations.length; j++) {
+          let op = collection.operations[j];
+          op.id = ++idCounter;
+          ops.push(Operation.fromConfig(op));
+        }
+        this._operations.set(collection.name, ops);
+      } else {
+        console.warn(`Collection: ${collection.name} has no operations.`);
       }
-      this._operations.set(collection.name, ops);
     }
   }
 
-  private collectionComparator = (collection1, collection2): number => {
-    return this.basicObjectComparator(collection1, collection2, 'name');
+  private collComparator = (coll1, coll2): number => {
+    return this.basicObjectComparator(coll1, coll2, 'name');
   }
 
-  private apiComparator = (api1, api2): number => {
+  private opComparator = (api1, api2): number => {
     return this.basicObjectComparator(api1, api2, 'uri');
   }
 
